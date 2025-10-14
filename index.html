@@ -127,6 +127,23 @@
   a:focus, button:focus{ outline: 2px dashed var(--neon); outline-offset:3px; }
 </style>
 </head>
+<!-- Syre-pop-up -->
+<div id="acidOverlay" class="acid-overlay clickable" aria-hidden="true">
+  <div class="acid-noise" aria-hidden="true"></div>
+  <div class="acid-modal" role="dialog" aria-modal="true" aria-labelledby="acidTitle">
+    <div class="acid-head">
+      <div id="acidTitle" class="acid-title">Du-valgte-det-her-selv™</div>
+      <button class="acid-btn acid-danger" id="acidClose" aria-label="Lukk">Dra hjem! ✕</button>
+    </div>
+    <div class="acid-body">
+      <img id="acidImg" class="acid-img" alt="Tilfeldig bilde fra galleriet">
+      <div id="acidCap" class="acid-cap"></div>
+    </div>
+    <div class="acid-actions">
+      <button class="acid-btn acid-rng" id="acidNext">EW, nytt bilde!</button>
+    </div>
+  </div>
+</div>
 <body>
   <div class="noise" aria-hidden="true"></div>
   <div class="wrap">
@@ -135,8 +152,8 @@
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span class="badge">beta</span><span>hjemmesnekra photoshop</span><span class="badge">blink 182%</span><span>lav terskel høy energi</span>
-        <span class="badge">beta</span><span>hjemmesnekra photoshop</span><span class="badge">blink 182%</span><span>lav terskel høy energi</span>
+        <span class="badge">Kostyme?</span><span>Jeg har flere enn deg</span><span class="badge">Comic Sans?</span><span>Jeg prøvde, men fikk ikke til</span>
+        <span class="badge">Jonathan?</span><span>Jeg prøvde å snakke han vekk fra strap-on</span><span class="badge">Jeg?</span><span>La meg være i fred.</span>
       </div>
     </div>
 
@@ -146,63 +163,310 @@
         <a class="btn" id="randomBtn" href="#gallery">Vis meg et tilfeldig bilde</a>
       </div>
     </div>
+<p>
 
-    <h2 id="gallery" style="margin:22px 0 8px;">GALLERI</h2>
-    <div class="grid" id="grid">
-      <!-- Bytt filnavnene under til dine egne bilder -->
-      <figure class="tile lg">
-        <img src="superhero_haakon.png" alt="Photoshop: deg som superhelt" loading="lazy">
-        <figcaption class="cap">Superhelt, men HR har sagt nei til kappe på jobb.</figcaption>
-      </figure>
+</p>
 
-      <figure class="tile sm">
-        <img src="mermaid_haakon.png" alt="Photoshop: deg som havfrue" loading="lazy">
-        <figcaption class="cap">Havfrue, men fortsatt landkrabbe i Excel.</figcaption>
-      </figure>
+<h2 id="gallery" style="margin:0px 0 0px;">SE PÅ KOSTYMENE MINE</h2>
 
-      <figure class="tile sm">
-        <img src="shrek_haakon.png" alt="Photoshop: deg som Shrek" loading="lazy">
-        <figcaption class="cap">Laget i myr-lys og dårlig smak.</figcaption>
-      </figure>
+<div class="grid" id="grid" style="
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: start;
+">
 
-      <figure class="tile lg">
-        <img src="beyonce_stage_haakon.jpg" alt="Photoshop: deg på scenen som popikon" loading="lazy">
-        <figcaption class="cap">Verken singel eller klar for stadion, men la gå.</figcaption>
-      </figure>
+  <figure class="tile" style="
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 25px;
+    overflow: hidden;
+    background: rgba(255,255,255,.05);
+    position: relative;
+    padding: 15px;
+    text-align: center;
+  ">
+    <img src="img/Mario_Ferie.png" alt="Photoshop: Meg som Mario på ferie"
+      loading="lazy" style="
+      width: auto;
+      height: 100%;
+      display: block;
+      margin: auto;
+    ">
+    <figcaption class="cap" style="
+      margin-top: 6px;
+      font-size: .9rem;
+      background: rgba(0,0,0,.55);
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.2);
+    ">
+      It's a me! Feriepappa! #DefinitelyNotAI
+    </figcaption>
+  </figure>
 
-      <figure class="tile sm">
-        <img src="wizard_haakon.jpg" alt="Photoshop: deg som trollmann" loading="lazy">
-        <figcaption class="cap">CTRL+C, CTRL+V, Abracadabra.</figcaption>
-      </figure>
+  <figure class="tile" style="border: 1px solid rgba(255,255,255,.25); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.05); position: relative; padding: 8px; text-align:center;">
+    <img src="img/mermaid_haakon.jpg" alt="Photoshop: deg som havfrue" loading="lazy"
+      style="width: 100%; height: auto; display: block; margin: 0 auto;">
+    <figcaption class="cap" style="margin-top: 6px; font-size: .9rem; background: rgba(0,0,0,.55); display: inline-block; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2);">
+      For feit til å være en havfrue i vann.
+    </figcaption>
+  </figure>
 
-      <figure class="tile sm">
-        <img src="astronaut_haakon.jpg" alt="Photoshop: deg som romturist" loading="lazy">
-        <figcaption class="cap">Vektløs, men tung på memer.</figcaption>
-      </figure>
-    </div>
+  <figure class="tile" style="border: 1px solid rgba(255,255,255,.25); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.05); position: relative; padding: 8px; text-align:center;">
+    <img src="img/shrek_haakon.jpg" alt="Photoshop: deg som Shrek" loading="lazy"
+      style="width: 100%; height: auto; display: block; margin: 0 auto;">
+    <figcaption class="cap" style="margin-top: 6px; font-size: .9rem; background: rgba(0,0,0,.55); display: inline-block; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2);">
+      Vi er vel alle lei av shrek-meme-kulturen nå, eller?
+    </figcaption>
+  </figure>
 
-    <footer>
-      <p>© 2025 – “Kunst” er et sterkt ord, men vi lot det stå.</p>
-    </footer>
-  </div>
+  <figure class="tile" style="border: 1px solid rgba(255,255,255,.25); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.05); position: relative; padding: 8px; text-align:center;">
+    <img src="img/beyonce_stage_haakon.jpg" alt="Photoshop: deg på scenen som popikon" loading="lazy"
+      style="width: 100%; height: auto; display: block; margin: 0 auto;">
+    <figcaption class="cap" style="margin-top: 6px; font-size: .9rem; background: rgba(0,0,0,.55); display: inline-block; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2);">
+      Verken singel eller klar for scenen, but i DO run the world.
+    </figcaption>
+  </figure>
+
+  <figure class="tile" style="border: 1px solid rgba(255,255,255,.25); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.05); position: relative; padding: 8px; text-align:center;">
+    <img src="img/wizard_haakon.jpg" alt="Photoshop: deg som trollmann" loading="lazy"
+      style="width: 100%; height: auto; display: block; margin: 0 auto;">
+    <figcaption class="cap" style="margin-top: 6px; font-size: .9rem; background: rgba(0,0,0,.55); display: inline-block; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2);">
+      CTRL+C, CTRL+V, CTRL+Abracadabra.
+    </figcaption>
+  </figure>
+
+  <figure class="tile" style="border: 1px solid rgba(255,255,255,.25); border-radius: 12px; overflow: hidden; background: rgba(255,255,255,.05); position: relative; padding: 8px; text-align:center;">
+    <img src="img/astronaut_haakon.jpg" alt="Photoshop: deg som romturist" loading="lazy"
+      style="width: 100%; height: auto; display: block; margin: 0 auto;">
+    <figcaption class="cap" style="margin-top: 6px; font-size: .9rem; background: rgba(0,0,0,.55); display: inline-block; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2);">
+      Fordi jeg spacer ut hele tiden
+    </figcaption>
+  </figure>
+</div>
+
 
 <script>
-/* Tiny JS for: random scroll-to image + optional UTM note in console */
-const grid = document.getElementById('grid');
-const randomBtn = document.getElementById('randomBtn');
-randomBtn.addEventListener('click', (e)=>{
-  const tiles = [...grid.querySelectorAll('.tile img')];
-  if(!tiles.length) return;
-  const pic = tiles[Math.floor(Math.random()*tiles.length)];
-  pic.scrollIntoView({behavior:'smooth', block:'center'});
-  pic.style.outline='3px solid #39ff14';
-  setTimeout(()=>pic.style.outline='none', 1800);
-});
+(function(){
+  const grid     = document.getElementById('grid');
+  const btn      = document.getElementById('randomBtn'); // eksisterende knapp
+  const overlay  = document.getElementById('acidOverlay');
+  const imgEl    = document.getElementById('acidImg');
+  const capEl    = document.getElementById('acidCap');
+  const closeBtn = document.getElementById('acidClose');
+  const nextBtn  = document.getElementById('acidNext');
 
-/* If you add ?from=qr on the QR link, this logs for fun */
-const params = new URLSearchParams(location.search);
-if(params.get('from')==='qr'){ console.log('Hei QR-venn. Fin t-skjorte.'); }
+  // Hent alle (img, caption)-par dynamisk
+  function getTiles(){
+    const figures = grid ? Array.from(grid.querySelectorAll('figure')) : [];
+    return figures.map(f => ({
+      img: f.querySelector('img'),
+      cap: f.querySelector('.cap')
+    })).filter(x => x.img);
+  }
+
+  function pickRandom(){
+    const tiles = getTiles();
+    if(!tiles.length) return null;
+    return tiles[Math.floor(Math.random() * tiles.length)];
+  }
+
+  function openModal(fromTile){
+    const tile = fromTile || pickRandom();
+    if(!tile) return;
+
+    // Sett bilde og caption, uten cropping
+    imgEl.src = tile.img.getAttribute('src');
+    imgEl.alt = tile.img.getAttribute('alt') || 'Bilde';
+    capEl.textContent = (tile.cap && tile.cap.textContent.trim()) || 'Uten tittel';
+
+    // Vis overlay
+    overlay.style.display = 'grid';
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  // Event: knapp åpner med tilfeldig bilde
+  if(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+  // Neste tilfeldig
+  nextBtn.addEventListener('click', function(){
+    openModal(); // bare plukk nytt
+  });
+
+  // Lukking
+  closeBtn.addEventListener('click', closeModal);
+
+  // Klikk utenfor modal lukker
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+
+  // Esc for å lukke
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.style.display === 'grid'){
+      closeModal();
+    }
+  });
+
+  // Valgfritt: Klikk på et bilde i galleriet for å åpne det i syre-pop-up
+  if(grid){
+    grid.addEventListener('click', function(e){
+      const fig = e.target.closest('figure');
+      if(!fig) return;
+      const tile = { img: fig.querySelector('img'), cap: fig.querySelector('.cap') };
+      if(tile.img) {
+        e.preventDefault();
+        openModal(tile);
+      }
+    });
+  }
+})();
+</script>
+
 </script>
 </body>
 </html>
+
+<style>
+  /* Grid uten tvang på høyde/forhold */
+  #grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items:start;
+  }
+
+  /* Kortet: fleks for å midtstille innhold pent */
+  #grid .tile{
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center; /* midtstill caption */
+  }
+
+  /* DEN VIKTIGE DELEN: vis hele bildet, aldri kutt */
+  #grid .tile img{
+    max-width:100%;
+    width:auto;             /* ikke strekk */
+    height:auto !important; /* behold proporsjon */
+    object-fit:contain !important;
+    aspect-ratio:auto !important;
+    display:block;
+  }
+
+  /* Pen caption, midtstilt */
+  #grid .tile .cap{
+    margin-top:6px;
+    font-size:.9rem;
+    background:rgba(0,0,0,.55);
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.2);
+  }
+
+  /* Pop-up overlay */
+  .acid-overlay{
+    position:fixed; inset:0; z-index:9999; 
+    display:none; place-items:center;
+    background:
+      radial-gradient(1200px 800px at 15% 20%, rgba(255,0,255,.30), transparent 60%),
+      radial-gradient(1000px 700px at 85% 30%, rgba(0,255,255,.25), transparent 60%),
+      rgba(0,0,0,.75);
+    backdrop-filter: blur(4px) saturate(1.2);
+    animation: overlayPulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes overlayPulse{
+    0%{ background-position:0% 0%, 100% 0%; }
+    100%{ background-position:20% 10%, 80% 20%; }
+  }
+
+  /* Støy for ekstra kaos */
+  .acid-noise{
+    position:absolute; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.18;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    background-size:240px 240px; animation:jitter 1.5s steps(2,end) infinite;
+  }
+  @keyframes jitter { to { transform:translate3d(2px,-2px,0); } }
+
+  /* Selve modal-kortet */
+  .acid-modal{
+    position:relative;
+    max-width: min(92vw, 980px);
+    max-height: 86vh;
+    width:clamp(300px, 88vw, 980px);
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.35);
+    background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(0,0,0,.35));
+    box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 40px rgba(0,255,255,.25);
+    overflow:hidden;
+    animation: pop .25s ease-out;
+  }
+  @keyframes pop { from{ transform:scale(.96); opacity:0 } to{ transform:scale(1); opacity:1 } }
+
+  .acid-head{
+    display:flex; gap:10px; align-items:center; justify-content:space-between;
+    padding:10px 12px; border-bottom:1px dashed rgba(255,255,255,.35);
+    background:rgba(0,0,0,.25);
+  }
+  .acid-title{
+    font-weight:800; letter-spacing:.02em; text-transform:uppercase;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,.3));
+  }
+  .acid-body{
+    padding:10px; display:grid; place-items:center;
+  }
+  .acid-img{
+    max-width: 100%; max-height: 68vh; height:auto; width:auto;
+    object-fit: contain; display:block;
+    filter: saturate(1.25) contrast(1.05);
+    animation: hue 9s linear infinite;
+  }
+  /* Syrlig hue-rotate */
+  @keyframes hue { to { filter: saturate(1.25) contrast(1.05) hue-rotate(360deg); } }
+
+  .acid-cap{
+    margin:8px auto 2px; text-align:center; font-size:.95rem;
+    background: rgba(0,0,0,.55);
+    display: inline-block; padding:6px 10px; border-radius:10px;
+    border:1px solid rgba(255,255,255,.2);
+  }
+
+  .acid-actions{
+    display:flex; gap:8px; justify-content:flex-end; padding:10px;
+    border-top:1px dashed rgba(255,255,255,.35);
+    background:rgba(0,0,0,.25);
+  }
+  .acid-btn{
+    appearance:none; cursor:pointer; font-weight:800;
+    border-radius:12px; padding:10px 14px;
+    border:1px solid rgba(255,255,255,.45);
+    background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+    color:#fff; text-decoration:none; box-shadow:0 0 14px rgba(255,255,255,.15);
+  }
+  .acid-btn:active{ transform: translateY(1px); }
+  .acid-danger{ border-color:rgba(255,90,90,.7); }
+  .acid-rng{ border-color:rgba(90,255,120,.7); }
+
+  /* Lukk ved klikk utenfor modal */
+  .acid-overlay.clickable{ cursor: zoom-out; }
+  .acid-modal{ cursor:auto; }
+</style>
 
