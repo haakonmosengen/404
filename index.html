@@ -1,20 +1,221 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<title>Error 404 - Costume Not Found</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Error 404 – Costume Not Found</title>
+<meta name="description" content="En estetisk katastrofe med selvironi. Dårlig Photoshop, høy energi." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='64'%3E🌀%3C/text%3E%3C/svg%3E">
 <style>
-  body { font-family: Comic Sans MS; background: linear-gradient(90deg, hotpink, cyan); text-align: center; color: white; }
-  img { width: 300px; border: 5px solid lime; margin: 20px; box-shadow: 0 0 20px yellow; }
-  h1 { font-size: 48px; text-shadow: 2px 2px black; }
+  :root{
+    --bg1:#ff00ff;
+    --bg2:#00fff0;
+    --bg3:#ffd400;
+    --ink:#0b0b0b;
+    --ink-invert:#fff;
+    --neon:#39ff14;
+    --glow:0 0 12px rgba(255,255,255,.7), 0 0 32px rgba(0,255,255,.35);
+    --r:14px;
+  }
+
+  /* Full-screen animated gradient */
+  body{
+    margin:0; color:var(--ink-invert); background:#000; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    min-height:100svh; overflow-x:hidden;
+    background: radial-gradient(1200px 800px at 10% 10%, var(--bg1), transparent 60%),
+                radial-gradient(1000px 700px at 90% 20%, var(--bg2), transparent 60%),
+                radial-gradient(900px 900px at 50% 110%, var(--bg3), transparent 60%), #0a0a0a;
+    animation: shift 18s linear infinite alternate;
+  }
+  @keyframes shift { to { background-position: 40% 30%, 70% 10%, 50% 90%; } }
+
+  /* Soft noise overlay */
+  .noise{position:fixed; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.18;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    background-size:240px 240px; animation:jitter 1.5s steps(2,end) infinite;
+  }
+  @keyframes jitter { to { transform:translate3d(2px,-2px,0); } }
+
+  /* Layout */
+  .wrap{max-width:1100px; margin:auto; padding:18px 18px 100px; }
+
+  /* Glitch headline */
+  .glitch{
+    position:relative; display:inline-block; font-weight:900; letter-spacing:.5px;
+    font-size: clamp(1.8rem, 6vw, 4rem);
+    text-shadow: var(--glow);
+    filter: drop-shadow(0 0 25px rgba(0,0,0,.6));
+  }
+  .glitch::before, .glitch::after{
+    content:attr(data-text); position:absolute; inset:0; pointer-events:none;
+  }
+  .glitch::before{ transform:translateX(2px); clip-path:polygon(0 0,100% 0,100% 45%,0 45%); color:#ff206e; mix-blend-mode:screen; }
+  .glitch::after{ transform:translateX(-2px); clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%); color:#04d9ff; mix-blend-mode:screen; }
+  @media (prefers-reduced-motion:no-preference){
+    .glitch{ animation:gl 1.8s infinite; }
+    @keyframes gl { 0%,100%{transform:translate(0)} 5%{transform:translate(-1px,0)} 10%{transform:translate(1px,0)} 15%{transform:translate(0,1px)} 20%{transform:translate(0,-1px)} }
+  }
+
+  /* Info card */
+  .card{
+    backdrop-filter: blur(10px) brightness(1.15);
+    background: rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius: var(--r);
+    padding: 16px 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  }
+
+  /* Marquee banner */
+  .ticker{
+    margin:20px 0; border-radius:var(--r); overflow:hidden; border:1px dashed rgba(255,255,255,.35);
+    background: rgba(0,0,0,.35);
+  }
+  .ticker__track{
+    display:flex; gap:28px; padding:10px 16px; white-space:nowrap; animation:mv 22s linear infinite;
+    font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  }
+  .badge{ padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.08); }
+  @keyframes mv { to { transform: translateX(-50%); } }
+
+  /* Gallery */
+  .grid{
+    display:grid; gap:14px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  /* 1 col mobile, 2–4 on larger screens with fun spans */
+  .tile{
+    grid-column: span 12;
+    position:relative; border-radius: calc(var(--r) - 4px);
+    overflow:hidden; border:1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.05);
+    transform:translateZ(0);
+  }
+  .tile img{
+    width:100%; height:auto; display:block; aspect-ratio: 4/5; object-fit:cover;
+    filter:saturate(1.25) contrast(1.05) brightness(1.05);
+    transition: transform .25s ease, filter .25s ease;
+  }
+  .tile:hover img{ transform:scale(1.02) rotate(.2deg); filter:saturate(1.4) contrast(1.12); }
+  .cap{
+    position:absolute; inset:auto 8px 8px 8px; background:rgba(0,0,0,.55);
+    padding:8px 10px; border-radius:10px; font-size:.9rem; backdrop-filter: blur(4px);
+    border:1px solid rgba(255,255,255,.2);
+  }
+  @media (min-width:580px){
+    .tile.sm{ grid-column:span 6; }   /* two across */
+  }
+  @media (min-width:900px){
+    .tile.sm{ grid-column:span 4; }   /* three across */
+    .tile.lg{ grid-column:span 6; }   /* wider */
+  }
+
+  /* Buttons */
+  .row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .btn{
+    appearance:none; border:1px solid rgba(255,255,255,.45); color:var(--ink-invert);
+    background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+    border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer;
+    box-shadow:var(--glow); text-decoration:none; display:inline-flex; gap:8px; align-items:center;
+  }
+  .btn:active{ transform:translateY(1px); }
+
+  /* Footer */
+  footer{opacity:.8; font-size:.85rem; padding:30px 0 10px; text-align:center;}
+
+  /* Accessibility niceties */
+  a:focus, button:focus{ outline: 2px dashed var(--neon); outline-offset:3px; }
 </style>
 </head>
 <body>
-  <h1>Error 404: Costume Not Found</h1>
-  <p>Men vi prøvde i Photoshop:</p>
-  <img src="superhero_haakon.png" alt="Haakon som superhelt">
-  <img src="mermaid_haakon.png" alt="Haakon som havfrue">
-  <img src="shrek_haakon.png" alt="Haakon som Shrek">
-  <p>Last updated from the basement ©2025</p>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="wrap">
+
+    <h1 class="glitch" data-text="Error 404: Costume Not Found">Error 404: Costume Not Found</h1>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span class="badge">beta</span><span>hjemmesnekra photoshop</span><span class="badge">blink 182%</span><span>lav terskel høy energi</span>
+        <span class="badge">beta</span><span>hjemmesnekra photoshop</span><span class="badge">blink 182%</span><span>lav terskel høy energi</span>
+      </div>
+    </div>
+
+    <div class="card" role="region" aria-label="Intro">
+      <p>Ikke fant vi kostymet, men vi fant en idé: dårlige montasjer, høy selvironi. Skann QR-koden på t-skjorta, land her, og bla i galleriet av “kunstig” deg.</p>
+      <div class="row">
+        <a class="btn" id="randomBtn" href="#gallery">Vis meg et tilfeldig bilde</a>
+        <a class="btn" href="#howto">Hvordan ble dette laget?</a>
+      </div>
+    </div>
+
+    <h2 id="gallery" style="margin:22px 0 8px;">GALLERI</h2>
+    <div class="grid" id="grid">
+      <!-- Bytt filnavnene under til dine egne bilder -->
+      <figure class="tile lg">
+        <img src="superhero_haakon.jpg" alt="Photoshop: deg som superhelt" loading="lazy">
+        <figcaption class="cap">Superhelt, men HR har sagt nei til kappe på jobb.</figcaption>
+      </figure>
+
+      <figure class="tile sm">
+        <img src="mermaid_haakon.jpg" alt="Photoshop: deg som havfrue" loading="lazy">
+        <figcaption class="cap">Havfrue, men fortsatt landkrabbe i Excel.</figcaption>
+      </figure>
+
+      <figure class="tile sm">
+        <img src="shrek_haakon.jpg" alt="Photoshop: deg som Shrek" loading="lazy">
+        <figcaption class="cap">Laget i myr-lys og dårlig smak.</figcaption>
+      </figure>
+
+      <figure class="tile lg">
+        <img src="beyonce_stage_haakon.jpg" alt="Photoshop: deg på scenen som popikon" loading="lazy">
+        <figcaption class="cap">Verken singel eller klar for stadion, men la gå.</figcaption>
+      </figure>
+
+      <figure class="tile sm">
+        <img src="wizard_haakon.jpg" alt="Photoshop: deg som trollmann" loading="lazy">
+        <figcaption class="cap">CTRL+C, CTRL+V, Abracadabra.</figcaption>
+      </figure>
+
+      <figure class="tile sm">
+        <img src="astronaut_haakon.jpg" alt="Photoshop: deg som romturist" loading="lazy">
+        <figcaption class="cap">Vektløs, men tung på memer.</figcaption>
+      </figure>
+    </div>
+
+    <section id="howto" style="margin-top:28px;">
+      <div class="card">
+        <h3 style="margin-top:8px;">Hvordan duplikere kaoset</h3>
+        <ol>
+          <li>Bytt ut bildefilnavnene i koden med dine egne JPG/PNG-filer.</li>
+          <li>Last opp alt til repoet ditt og skru på GitHub Pages under <em>Settings → Pages</em>.</li>
+          <li>Lag QR-kode som peker hit, print/teip på t-skjorta. Ferdig.</li>
+        </ol>
+        <p>Alt er responsivt. Bilder lastes “lazy”. Ingen eksterne rammeverk, så siden funker også med shaki Wi-Fi.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 – “Kunst” er et sterkt ord, men vi lot det stå.</p>
+    </footer>
+  </div>
+
+<script>
+/* Tiny JS for: random scroll-to image + optional UTM note in console */
+const grid = document.getElementById('grid');
+const randomBtn = document.getElementById('randomBtn');
+randomBtn.addEventListener('click', (e)=>{
+  const tiles = [...grid.querySelectorAll('.tile img')];
+  if(!tiles.length) return;
+  const pic = tiles[Math.floor(Math.random()*tiles.length)];
+  pic.scrollIntoView({behavior:'smooth', block:'center'});
+  pic.style.outline='3px solid #39ff14';
+  setTimeout(()=>pic.style.outline='none', 1800);
+});
+
+/* If you add ?from=qr on the QR link, this logs for fun */
+const params = new URLSearchParams(location.search);
+if(params.get('from')==='qr'){ console.log('Hei QR-venn. Fin t-skjorte.'); }
+</script>
 </body>
 </html>
+
