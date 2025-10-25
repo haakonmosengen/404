@@ -150,10 +150,39 @@
 
     <h1 class="glitch" data-text="Error 404: Costume Not Found">Error 404: Costume Not Found</h1>
 
+<style>
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.ticker__track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker 15s linear infinite; /* <- endre tallet her */
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.badge {
+  background: #ed002f;
+  padding: 1 0.5em;
+  margin-right: 1em;
+  margin-left: 1em;
+  border-radius: 50px;
+}
+</style>
+    
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span class="badge">Kostyme?</span><span>Jeg har flere enn deg</span><span class="badge">Comic Sans?</span><span>Jeg prøvde, men fikk ikke til</span>
-        <span class="badge">Jonathan?</span><span>Han fant faktisk et kostyme uten pikk</span><span class="badge">Jeg?</span><span>La meg være i fred.</span>
+        <span class="badge">Kostyme?</span><span>Jeg har flere enn deg</span>
+        <span class="badge">Hvor er kostymet mitt?</span><span>På denne siden, din doofus</span>
+        <span class="badge">Jonathan?</span><span>Han fant faktisk et kostyme uten pikk</span>
+        <span class="badge">OBS:</span><span>Please mind the gap</span>
       </div>
     </div>
 
@@ -162,6 +191,7 @@
       <p></p>
       <p>I full panikk kjøpte jeg trykkpapir på biltema, og skrev ut en QR-kode (altså, du er her nå, så dette vet du jo).</p>
       <p>Det fine med det, er at nå kan jeg showcase favorittene mine. Du kan enten scrolle nedover, eller trykk på knappen rett under for å se en tilfeldig rekke av bilder (er du lat og ser tilfeldig, kan det være det ser litt syre ut).</p>
+      
       <div class="row">
         <a class="btn" id="randomBtn" href="#gallery">Vis meg et tilfeldig bilde</a>
       </div>
@@ -472,6 +502,7 @@
   .acid-overlay.clickable{ cursor: zoom-out; }
   .acid-modal{ cursor:auto; }
 </style>
+
 
 
 
